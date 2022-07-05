@@ -54,15 +54,11 @@ for filename in files_list:
         exist_ok=True,
         parents=True,
     )
-    file = f'{folder}/index.html'
+    file_path = f'{folder}/index.html'
 
     file_content = f'<meta http-equiv="refresh" content="1;url=https://raw.githubusercontent.com/gmankab/arch-tweaker/main/{filename}"/>'
-    command = f"echo '{file_content}' > '{file}'"
-    print(
-        run(
-            command
-        )
-    )
+    with open(file_path, 'w') as file:
+        file.write(file_content)
 
 os.system('python ~/proj/init/python/gp.py main')
 os.chdir(gmankab_github_io_dir)
