@@ -56,7 +56,7 @@ for filename in files_list:
     )
     file = f'{folder}/index.html'
 
-    file_content = f'<meta http-equiv="refresh" content="1;url=https://raw.githubusercontent.com/gmankab/gmankab.github.io/main/{filename}"/>'
+    file_content = f'<meta http-equiv="refresh" content="1;url=https://raw.githubusercontent.com/gmankab/arch-tweaker/main/{filename}"/>'
     command = f"echo '{file_content}' > '{file}'"
     print(
         run(
