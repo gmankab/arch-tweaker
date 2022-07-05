@@ -48,7 +48,8 @@ print(run(f'rm -r {backup_dir}'))
 os.rename(tweaker_github_io_dir, backup_dir)
 
 for filename in files_list:
-    file = f'{tweaker_github_io_dir}/{filename}'
+    changed_filename = filename.replace('.', '_')
+    file = f'{tweaker_github_io_dir}/{changed_filename}'
     Path(file).parent.mkdir(
         exist_ok=True,
         parents=True,
