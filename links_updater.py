@@ -63,5 +63,5 @@ for filename in files_list:
     )
 
 os.system('python ~/proj/init/python/gp.py main')
-os.system(f'cd {gmankab_github_io_dir}')
+os.chdir(gmankab_github_io_dir)
 os.system('python ~/proj/init/python/gp.py main')
