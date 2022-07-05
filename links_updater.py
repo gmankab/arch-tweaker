@@ -48,12 +48,13 @@ print(run(f'rm -r {backup_dir}'))
 os.rename(tweaker_github_io_dir, backup_dir)
 
 for filename in files_list:
-    changed_filename = filename.replace('.', '_')
-    file = f'{tweaker_github_io_dir}/{changed_filename}'
-    Path(file).parent.mkdir(
+    # changed_filename = filename.replace('.', '_')
+    folder = f'{tweaker_github_io_dir}/{filename}'
+    Path(folder).mkdir(
         exist_ok=True,
         parents=True,
     )
+    file = f'{folder}/index.html'
 
     file_content = f'<meta http-equiv="refresh" content="1;url=https://raw.githubusercontent.com/gmankab/gmankab.github.io/main/{filename}"/>'
     command = f"echo '{file_content}' > '{file}'"
