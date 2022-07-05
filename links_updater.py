@@ -44,14 +44,19 @@ for file in files_list.copy():
     if file[:4] == 'svg/':
         files_list.remove(file)
 
+print(run(f'rm -r {backup_dir}'))
 if Path(tweaker_github_io_dir).exists():
     os.replace(tweaker_github_io_dir, backup_dir)
 
 exceptions = {
-    'tweaks/main': ''
+    'main': ''
 }
 
 for filename in files_list:
+    print(filename)
+    if filename[:6] == 'tweaks':
+        filename = filename[7:]
+    print(filename)
     folders = [
         f'{tweaker_github_io_dir}/{filename}',
     ]
