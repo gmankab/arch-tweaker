@@ -1,11 +1,12 @@
 #!/bin/python
 
 '''
-this creates files for repo https://github.com/gmankab/gmankab.github.io/arch, wich will redirecting user to https://github.com/gmankab/arch-tweaker
+this script copyes files from gmankab/arch-tweaker repo to  gmankab/gmankab.github.io/arch
 '''
 
 import os
 import subprocess
+import shutil
 from pathlib import Path
 from rich import pretty
 from rich.console import Console
@@ -49,33 +50,34 @@ if Path(tweaker_github_io_dir).exists():
     os.replace(tweaker_github_io_dir, backup_dir)
 
 exceptions = {
-    'main': ''
+    'tweaks/main': ''
 }
 
 for filename in files_list:
-    print(filename)
+    edited_filename = filename
     if filename[:6] == 'tweaks':
-        filename = filename[7:]
-    print(filename)
+        edited_filename = filename[7:]
     folders = [
-        f'{tweaker_github_io_dir}/{filename}',
+        f'{tweaker_github_io_dir}/{edited_filename}',
     ]
     for key, val in exceptions.items():
+        print(filename)
         if filename == key:
             folders.append(
                 f'{tweaker_github_io_dir}/{val}'
             )
 
-    file_content = f'<meta http-equiv="refresh" content="1;url=https://raw.githubusercontent.com/gmankab/arch-tweaker/main/{filename}"/>'
-
+    print(folders)
     for folder in folders:
         Path(folder).mkdir(
             exist_ok=True,
             parents=True,
         )
-        file_path = f'{folder}/index.html'
-        with open(file_path, 'w') as file:
-            file.write(file_content)
+
+        shutil.copy(
+            f'{tweaker_dir}/{filename}',
+            f'{folder}/index.html'
+        )
 
 
 os.system('python ~/proj/init/python/gp.py main')
