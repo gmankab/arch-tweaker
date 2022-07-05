@@ -44,21 +44,34 @@ for file in files_list.copy():
     if file[:4] == 'svg/':
         files_list.remove(file)
 
-print(run(f'rm -r {backup_dir}'))
-os.rename(tweaker_github_io_dir, backup_dir)
+if Path(tweaker_github_io_dir).exists():
+    os.replace(tweaker_github_io_dir, backup_dir)
+
+exceptions = {
+    'tweaks/main': ''
+}
 
 for filename in files_list:
-    # changed_filename = filename.replace('.', '_')
-    folder = f'{tweaker_github_io_dir}/{filename}'
-    Path(folder).mkdir(
-        exist_ok=True,
-        parents=True,
-    )
-    file_path = f'{folder}/index.html'
+    folders = [
+        f'{tweaker_github_io_dir}/{filename}',
+    ]
+    for key, val in exceptions.items():
+        if filename == key:
+            folders.append(
+                f'{tweaker_github_io_dir}/{val}'
+            )
 
     file_content = f'<meta http-equiv="refresh" content="1;url=https://raw.githubusercontent.com/gmankab/arch-tweaker/main/{filename}"/>'
-    with open(file_path, 'w') as file:
-        file.write(file_content)
+
+    for folder in folders:
+        Path(folder).mkdir(
+            exist_ok=True,
+            parents=True,
+        )
+        file_path = f'{folder}/index.html'
+        with open(file_path, 'w') as file:
+            file.write(file_content)
+
 
 os.system('python ~/proj/init/python/gp.py main')
 os.chdir(gmankab_github_io_dir)
