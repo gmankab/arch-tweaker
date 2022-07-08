@@ -1,7 +1,7 @@
 #!/bin/python
 
 '''
-this script copyes files from gmankab/arch-tweaker repo to  gmankab/gmankab.github.io/arch
+script copyes files from gmankab/arch-tweaker repo to  gmankab/gmankab.github.io/arch
 '''
 
 import os
