@@ -78,8 +78,3 @@ for filename in files_list:
             f'{tweaker_dir}/{filename}',
             f'{folder}/index.html'
         )
-
-
-os.system('python ~/proj/init/python/gp.py main')
-os.chdir(gmankab_github_io_dir)
-os.system('python ~/proj/init/python/gp.py main')

@@ -9,4 +9,4 @@ cd "yay-bin" || echo 'FAIL'
 makepkg --noconfirm -si
 
 cd "$HOME" || echo 'FAIL'
-sudo rm -rf "$HOME/yay-bin"
+rm -rf "$HOME/yay-bin"
