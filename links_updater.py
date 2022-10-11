@@ -1,7 +1,7 @@
 #!/bin/python
 
 '''
-script copyes files from gmankab/arch-tweaker repo to  gmankab/gmankab.github.io/arch
+script copies files from gmankab/arch-tweaker repo to  gmankab/gmankab.github.io/arch
 '''
 
 import os
@@ -24,6 +24,10 @@ gmankab_github_io_dir = Path(
 
 tweaker_github_io_dir = f'{gmankab_github_io_dir}/arch'
 backup_dir = f'{gmankab_github_io_dir}/backup'
+
+os.system(
+    'python -m prettygit'
+)
 
 files_list = run(
     'git ls-tree -r main --name-only'
@@ -78,3 +82,8 @@ for filename in files_list:
             f'{tweaker_dir}/{filename}',
             f'{folder}/index.html'
         )
+
+os.chdir(gmankab_github_io_dir)
+os.system(
+    'python -m prettygit'
+)
